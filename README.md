@@ -1,23 +1,37 @@
-# template-bun
+# @meld-ts/create-bun
 
 <a href="https://github.com/meld-ts/core" target="_blank"><img src="https://github.com/meld-ts/core/raw/main/assets/meld-ts.png" width="320" style="max-width: 100%;"></a>
 
-A modern Bun project template with TypeScript, Biome, and first-class support for **library**, **app**, and **react-app** project modes.
+A modern Bun project scaffold with TypeScript, Biome, and three project modes: **lib**, **app**, and **react-app**.
 
 ## Usage
+
+```bash
+bun create @meld-ts/bun my-project
+```
+
+Or via bunx:
 
 ```bash
 bunx --package @meld-ts/create-bun create-bun my-project
 ```
 
-Or install globally first:
+You'll be prompted to choose a project mode:
 
-```bash
-bun add -g @meld-ts/create-bun
-create-bun my-project
+```
+Project mode (lib / app / react-app): [lib]
 ```
 
-During setup, you'll be prompted to choose a project mode:
+Then follow the printed instructions to install and start:
+
+```bash
+cd my-project
+bun install
+bun run ts-check && bun run test   # lib / app
+bun run dev                        # react-app
+```
+
+## Project modes
 
 | Mode | Description |
 |------|-------------|
@@ -27,30 +41,51 @@ During setup, you'll be prompted to choose a project mode:
 
 ## What's included
 
-- **[Bun](https://bun.com/)** — runtime, package manager, test runner
+- **[Bun](https://bun.sh/)** — runtime, package manager, test runner
 - **TypeScript** via [`@typescript/native-preview`](https://github.com/microsoft/typescript-go) (tsgo)
 - **[Biome](https://biomejs.dev/)** — formatter + linter, pre-configured
-- **[bunup](https://bunup.dev/)** — build tool for lib/app modes
-- **Bun native bundler** — for react-app mode (HTML entrypoint, HMR)
+- **[bunup](https://bunup.dev/)** — build tool for lib / app modes
+- **Bun native bundler** — for react-app (HTML entrypoint, HMR)
 
-## Scripts
+## Available scripts
 
 ```bash
 bun run fmt           # format with Biome
 bun run lint          # lint (warnings as errors)
 bun run ts-check      # type check with tsgo
-bun run test          # run tests + coverage
+bun run test          # run tests + coverage  (lib / app)
 bun run dev           # dev server / hot reload
 bun run build         # production build
-bun run biome-migrate # update Biome config after upgrade
+bun run biome-migrate # sync Biome config after upgrade
 ```
 
-## Template files
+## Template structure
 
-| File | Purpose |
-|------|---------|
-| `gitignore` | Becomes `.gitignore` in the new project |
-| `setup.ts` | Postinstall script — runs once, then self-deletes |
-| `bunup.config.ts` | Build config (lib/app only) |
-| `src/index.ts` | Default entry (lib/app only) |
-| `src/index.test.ts` | Default test (lib/app only) |
+```
+template-lib/               # TypeScript library
+├── src/index.ts
+├── src/index.test.ts
+├── bunup.config.ts
+├── tsconfig.json
+└── biome.json
+
+template-app/               # Node.js app
+├── src/index.ts
+├── src/index.test.ts
+├── bunup.config.ts
+├── tsconfig.json
+└── biome.json
+
+template-react-app/         # React SPA
+├── src/
+│   ├── index.html
+│   ├── main.tsx
+│   ├── global.css
+│   ├── global.d.ts
+│   └── app/App.tsx
+├── scripts/
+│   ├── dev-serve.ts
+│   └── build.ts
+├── tsconfig.json
+└── biome.json
+```

@@ -2,7 +2,7 @@
   "name": "my-project",
   "version": "1.0.0",
   "type": "module",
-  "description": "my-project",
+  "description": "",
   "module": "./src/index.ts",
   "types": "./src/index.ts",
   "files": ["./dist"],

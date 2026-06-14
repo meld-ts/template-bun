@@ -11,5 +11,6 @@ const app = (
   </StrictMode>
 );
 
-// biome-ignore lint/suspicious/noAssignInExpressions: ??= assignment is the idiomatic HMR pattern to persist root across hot reloads
-(import.meta.hot.data.root ??= createRoot(elem)).render(app);
+// biome-ignore lint/suspicious/noAssignInExpressions: ??= persists root across HMR reloads; ternary guards against undefined in production builds
+const root = import.meta.hot ? (import.meta.hot.data.root ??= createRoot(elem)) : createRoot(elem);
+root.render(app);
