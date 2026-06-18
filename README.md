@@ -2,6 +2,8 @@
 
 <a href="https://github.com/meld-ts/core" target="_blank"><img src="https://github.com/meld-ts/core/raw/main/assets/meld-ts.png" width="320" style="max-width: 100%;"></a>
 
+[![version](https://img.shields.io/npm/v/@meld-ts/create-bun?style=for-the-badge)](https://www.npmjs.com/package/@meld-ts/create-bun)
+
 A modern Bun project scaffold with TypeScript support and three project types: **lib**, **app**, and **react-app**.
 
 ## Usage
